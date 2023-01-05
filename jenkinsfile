@@ -1,12 +1,12 @@
-ppipeline{
+pipeline{
 	agent any
 	environment{
-		staging_server=""
+		server_name="44.211.124.172"
 	}
 		stages{
-			stage('Deploy to remote){
+			stage('Deploy to remote'){
 				steps{
-					sh 'sh ${WORKSPACE}/* root@${staging_server}:/var/www/html/leavesystem'
+					sh 'scp -r ${WORKSPACE}/* root@${server_server}:/var/www/html/leavesystem/'
 				}
 			
 			}
