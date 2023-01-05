@@ -6,7 +6,7 @@ pipeline{
 		stages{
 			stage('Deploy to remote'){
 				steps{
-					sh 'scp -r ${ec2-user@ip-172-31-95-46}/* root@${staging_server}:/var/www/html/leavesystem/'
+					sh 'scp -r ${WORKSPACE}/* root@${staging_server}:/var/www/html/leavesystem/'
 				}
 			
 			}
