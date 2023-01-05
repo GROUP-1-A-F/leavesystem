@@ -1,0 +1,16 @@
+ppipeline{
+	agent any
+	environment{
+		staging_server=""
+	}
+		stages{
+			stage('Deploy to remote){
+				steps{
+					sh 'sh ${WORKSPACE}/* root@${staging_server}:/var/www/html/leavesystem'
+				}
+			
+			}
+		}
+
+
+}
