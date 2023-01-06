@@ -1,11 +1,16 @@
-pipeline {
-    agent any
+pipeline{
+	agent any
+	environment{
+		staging_server="44.211.124.172"
+	}
+		stages{
+			stage('Deploy to remote'){
+				steps{
+					sh 'scp -r ${WORKSPACE}/* root@$staging_server}:/var/www/html/leavesystem/'
+				}
+			
+			}
+		}
 
-    stages {
-        stage('Deploy Application') {
-            steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'JENKINS', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/var/www/html/leavesystem', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '\'"/\',php')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-            }
-        }
-    }
+
 }
